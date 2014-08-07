@@ -24,12 +24,7 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
 MemBlobs.prototype.createReadStream = function(opts) {
   var buff = this.data[opts.name]
   var stream = duplexify()
-  if (!buff) {
-    process.nextTick(function() {
-      stream.destroy(new Error('Blob not found'))
-    })
-  } else {
-    stream.setReadable(from([buff]))
-  }
+  if (!buff) stream.destroy(new Error('Blob not found'))
+  else stream.setReadable(from([buff]))
   return stream
 }
