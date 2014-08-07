@@ -9,7 +9,7 @@ module.exports.blobWriteStream = function(test, common) {
         t.notOk(err, 'no blob write err')
         t.ok(obj.size, 'blob has size')
         t.ok(obj.hash, 'blob has hash')
-        common.teardown(test, function(err) {
+        common.teardown(test, store, function(err) {
           t.end()
         })
       })
@@ -35,7 +35,7 @@ module.exports.blobReadStream = function(test, common) {
 
         rs.pipe(concat(function(file) {
           t.equal(file.length, blob.size, 'blob size is correct')
-          common.teardown(test, function(err) {
+          common.teardown(test, store, function(err) {
             t.end()
           })
         }))
@@ -55,7 +55,7 @@ module.exports.blobReadError = function(test, common) {
 
       rs.on('error', function(e) {
         t.ok(e, 'got a read stream err')
-        common.teardown(test, function(err) {
+        common.teardown(test, store, function(err) {
           t.end()
         })
       })
