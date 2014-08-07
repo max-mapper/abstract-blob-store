@@ -1,17 +1,28 @@
 {
   "name": "abstract-blob-store",
-  "version": "0.0.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "A test suite and interface you can use to implement streaming file (blob) storage modules for various storage backends and platforms.",
   "main": "index.js",
   "scripts": {
     "test": "node tests/run.js"
   },
-  "author": "",
+  "author": "max ogden",
   "license": "BSD",
   "dependencies": {
     "concat-stream": "^1.4.6",
     "duplexify": "^3.0.1",
-    "from2-array": "0.0.2",
-    "sha-stream": "0.0.6"
-  }
+    "from2-array": "0.0.2"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxogden/abstract-blob-store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxogden/abstract-blob-store/issues"
+  },
+  "homepage": "https://github.com/maxogden/abstract-blob-store"
 }
