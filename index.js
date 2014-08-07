@@ -6,6 +6,7 @@ var crypto = require('crypto')
 module.exports = MemBlobs
 
 function MemBlobs() {
+  if (!(this instanceof MemBlobs)) return new MemBlobs()
   this.data = {}
 }
 
@@ -23,7 +24,12 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
 MemBlobs.prototype.createReadStream = function(opts) {
   var buff = this.data[opts.name]
   var stream = duplexify()
-  if (!buff) stream.destroy(new Error('not found'))
-  else stream.setReadable(from([buff]))
+  if (!buff) {
+    process.nextTick(function() {
+      stream.destroy(new Error('Blob not found'))
+    })
+  } else {
+    stream.setReadable(from([buff]))
+  }
   return stream
 }

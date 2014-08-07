@@ -19,7 +19,7 @@ module.exports.blobWriteStream = function(test, common) {
 }
 
 module.exports.blobReadStream = function(test, common) {
-  test('getting a blob read stream by row key + name', function(t) {
+  test('getting a blob read stream name', function(t) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
       
@@ -46,7 +46,26 @@ module.exports.blobReadStream = function(test, common) {
   })
 }
 
+module.exports.blobReadError = function(test, common) {
+  test('reading a blob that does not exist', function(t) {
+    common.setup(test, function(err, store) {
+      t.notOk(err, 'no setup err')
+    
+      var rs = store.createReadStream({name: 'test.js'})
+
+      rs.on('error', function(e) {
+        t.ok(e, 'got a read stream err')
+        common.teardown(test, function(err) {
+          t.end()
+        })
+      })
+    })
+    
+  })
+}
+
 module.exports.all = function (test, common) {
   module.exports.blobWriteStream(test, common)
   module.exports.blobReadStream(test, common)
+  module.exports.blobReadError(test, common)
 }
