@@ -1,0 +1,17 @@
+{
+  "name": "abstract-blob-store",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/run.js"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "concat-stream": "^1.4.6",
+    "duplexify": "^3.0.1",
+    "from2-array": "0.0.2",
+    "sha-stream": "0.0.6"
+  }
+}
