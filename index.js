@@ -1,6 +1,5 @@
 var from = require('from2-array')
 var concat = require('concat-stream')
-var duplexify = require('duplexify')
 var crypto = require('crypto')
 
 module.exports = MemBlobs
@@ -23,8 +22,12 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
 
 MemBlobs.prototype.createReadStream = function(opts) {
   var buff = this.data[opts.name]
-  var stream = duplexify()
-  if (!buff) stream.destroy(new Error('Blob not found'))
-  else stream.setReadable(from([buff]))
+  var stream
+  if (!buff) {
+    stream = from([])
+    stream.destroy(new Error('Blob not found'))
+  } else {
+    stream = from([buff])
+  }
   return stream
 }
