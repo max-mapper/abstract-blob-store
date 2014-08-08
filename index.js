@@ -16,7 +16,7 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
   function done(contents) {
     var sha = crypto.createHash('sha1').update(contents).digest('hex')
     self.data[opts.name] = contents
-    cb(null, {hash: sha, size: contents.length})
+    cb(null, {hash: sha, size: contents.length, name: opts.name})
   }
 }
 

@@ -7,7 +7,7 @@ var common = {
     // make a new blobs instance on every test
     cb(null, blobs())
   },
-  teardown: function(t, store, cb) {
+  teardown: function(t, store, blob, cb) {
     delete store.data
     cb()
   }

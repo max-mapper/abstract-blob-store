@@ -1,6 +1,6 @@
 {
   "name": "abstract-blob-store",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A test suite and interface you can use to implement streaming file (blob) storage modules for various storage backends and platforms.",
   "main": "index.js",
   "scripts": {

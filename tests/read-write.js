@@ -6,10 +6,11 @@ module.exports.blobWriteStream = function(test, common) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
       var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
-        t.notOk(err, 'no blob write err')
+        t.error(err)
         t.ok(obj.size, 'blob has size')
         t.ok(obj.hash, 'blob has hash')
-        common.teardown(test, store, function(err) {
+        common.teardown(test, store, obj, function(err) {
+          t.error(err)
           t.end()
         })
       })
@@ -19,14 +20,14 @@ module.exports.blobWriteStream = function(test, common) {
 }
 
 module.exports.blobReadStream = function(test, common) {
-  test('getting a blob read stream name', function(t) {
+  test('reading a blob as a stream', function(t) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
       
       var ws = store.createWriteStream({name: 'test.js'}, function(err, blob) {
         t.notOk(err, 'no blob write err')
         
-        var rs = store.createReadStream({name: 'test.js'})
+        var rs = store.createReadStream(blob)
 
         rs.on('error', function(e) {
           t.false(e, 'no read stream err')
@@ -35,7 +36,8 @@ module.exports.blobReadStream = function(test, common) {
 
         rs.pipe(concat(function(file) {
           t.equal(file.length, blob.size, 'blob size is correct')
-          common.teardown(test, store, function(err) {
+          common.teardown(test, store, blob, function(err) {
+            t.error(err)
             t.end()
           })
         }))
@@ -51,11 +53,12 @@ module.exports.blobReadError = function(test, common) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
     
-      var rs = store.createReadStream({name: 'test.js'})
+      var rs = store.createReadStream({name: 'test.js', hash: 'abc123'})
 
       rs.on('error', function(e) {
         t.ok(e, 'got a read stream err')
-        common.teardown(test, store, function(err) {
+        common.teardown(test, store, undefined, function(err) {
+          t.error(err)
           t.end()
         })
       })
