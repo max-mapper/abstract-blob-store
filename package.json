@@ -15,7 +15,9 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^2.14.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/maxogden/abstract-blob-store.git"
