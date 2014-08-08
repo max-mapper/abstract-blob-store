@@ -31,3 +31,7 @@ MemBlobs.prototype.createReadStream = function(opts) {
   }
   return stream
 }
+
+MemBlobs.prototype.exists = function(opts, cb) {
+  cb(null, !!this.data[opts.name])
+}

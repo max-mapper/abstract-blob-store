@@ -53,7 +53,7 @@ module.exports.blobReadError = function(test, common) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
     
-      var rs = store.createReadStream({name: 'test.js', hash: 'abc123'})
+      var rs = store.createReadStream({name: 'test.js', hash: '8843d7f92416211de9ebb963ff4ce28125932878'})
 
       rs.on('error', function(e) {
         t.ok(e, 'got a read stream err')
@@ -67,8 +67,37 @@ module.exports.blobReadError = function(test, common) {
   })
 }
 
+module.exports.blobExists = function(test, common) {
+  test('check if a blob exists', function(t) {
+    common.setup(test, function(err, store) {
+      t.notOk(err, 'no setup err')
+      var blobMeta = {name: 'test.js', hash: '8843d7f92416211de9ebb963ff4ce28125932878'}
+      
+      store.exists(blobMeta, function(err, exists) {
+        t.error(err)
+        t.notOk(exists, 'does not exist')
+        
+        var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
+          store.exists(blobMeta, function(err, exists) {
+            t.error(err)
+            t.ok(exists, 'exists')
+            common.teardown(test, store, obj, function(err) {
+              t.error(err)
+              t.end()
+            })
+          })
+        })
+        
+        from([new Buffer('foo'), new Buffer('bar')]).pipe(ws)
+      })
+      
+    })
+  })
+}
+
 module.exports.all = function (test, common) {
   module.exports.blobWriteStream(test, common)
   module.exports.blobReadStream(test, common)
   module.exports.blobReadError(test, common)
+  module.exports.blobExists(test, common)
 }
