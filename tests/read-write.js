@@ -72,13 +72,13 @@ module.exports.blobExists = function(test, common) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
       var blobMeta = {name: 'test.js', hash: '8843d7f92416211de9ebb963ff4ce28125932878'}
-      
       store.exists(blobMeta, function(err, exists) {
         t.error(err)
         t.notOk(exists, 'does not exist')
         
         var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
-          store.exists(blobMeta, function(err, exists) {
+          // on this .exists call use the metadata from the writeStream
+          store.exists(obj, function(err, exists) {
             t.error(err)
             t.ok(exists, 'exists')
             common.teardown(test, store, obj, function(err) {
