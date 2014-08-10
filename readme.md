@@ -10,6 +10,14 @@ The goal of this module is to define a de-facto standard streaming file storage/
 
 Publishing a test suite as a module lets multiple modules all ensure compatibility since they use the same test suite. For example, [level.js uses abstract-leveldown](https://github.com/maxogden/level.js/blob/master/test/test.js), and so does [memdown](https://github.com/rvagg/memdown/blob/master/test.js) and [leveldown](https://github.com/rvagg/node-leveldown/blob/master/test/close-test.js) and others.
 
+## some modules that use this
+
+- [local-blob-store](https://github.com/maxogden/local-blob-store)
+- [google-cloud-storage](https://github.com/maxogden/google-cloud-storage)
+- [google-drive-blobs](https://github.com/maxogden/google-drive-blobs)
+
+send a PR adding yours if you write a new one
+
 ## how to use
 
 To use the test suite from this module you can `require('abstract-blob-store/tests')`
