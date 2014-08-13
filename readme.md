@@ -1,6 +1,6 @@
 # abstract-blob-store
 
-A test suite and interface you can use to implement streaming file (blob) storage modules for various storage backends and platforms.
+A test suite and interface you can use to implement streaming file ([blob](http://en.wikipedia.org/wiki/Binary_large_object)) storage modules for various storage backends and platforms.
 
 [![NPM](https://nodei.co/npm/abstract-blob-store.png)](https://nodei.co/npm/abstract-blob-store/)
 
