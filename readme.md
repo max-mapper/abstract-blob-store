@@ -15,6 +15,7 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [fs-blob-store](https://github.com/mafintosh/fs-blob-store)
 - [google-cloud-storage](https://github.com/maxogden/google-cloud-storage)
 - [google-drive-blobs](https://github.com/maxogden/google-drive-blobs)
+- [postgres-blob-store](https://github.com/finnp/postgres-blob-store)
 - [local-blob-store](https://github.com/maxogden/local-blob-store) (deprecated)
 
 send a PR adding yours if you write a new one
