@@ -61,17 +61,17 @@ A valid blob store should implement the following APIs. There is a reference in-
 
 This method should return a writable stream, and call `cb` with `err, metadata` when it finishes writing the data to the underlying blob store.
 
-`opts` should be an object with at least a `name` property.
+`opts` **must** be an object with at least `name` and `key` properties
 
 You can choose how to store the blob. The recommended way is to hash the contents of the incoming stream and store the blob using that hash as the key (this is known as 'content-addressed storage'). If this is not an option you can choose some other way to store the data. When calling the callback you should return an object that ideally has all of the relevant metadata on it, as this object will be used to later read the blob from the blob store.
 
-In ths reference implementation the callback gets called with `{hash: sha, size: contents.length, name: opts.name}`.
+In ths reference implementation the callback gets called with `{key: sha, size: contents.length, name: opts.name}`.
 
 ### store.createReadStream(opts)
 
 This method should return a readable stream that emits blob data from the underlying blob store or emits an error if the blob does not exist or if there was some other error during the read.
 
-`opts` should be an object that has metadata that can be used to find and read the blob. In the reference implementation the `name` field is used to find the file, but it is recommended to use the `hash` value from `opts` to find the file to avoid duplication or finding the wrong file.
+`opts` *must* be an object with both `key` and `name` properties. The `key` is used to find and read the blob. It is recommended where possible to use the hash of the contents of the file as the `key` in order to avoid duplication or finding the wrong file.
 
 ### store.exists(opts, cb)
 

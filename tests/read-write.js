@@ -7,8 +7,8 @@ module.exports.blobWriteStream = function(test, common) {
       t.notOk(err, 'no setup err')
       var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
         t.error(err)
-        t.ok(obj.size, 'blob has size')
-        t.ok(obj.hash, 'blob has hash')
+        t.ok(obj.key, 'blob has key')
+        t.ok(obj.name, 'blob has name')
         common.teardown(test, store, obj, function(err) {
           t.error(err)
           t.end()
@@ -26,6 +26,8 @@ module.exports.blobReadStream = function(test, common) {
       
       var ws = store.createWriteStream({name: 'test.js'}, function(err, blob) {
         t.notOk(err, 'no blob write err')
+        t.ok(blob.key, 'blob has key')
+        t.ok(blob.name, 'blob has name')
         
         var rs = store.createReadStream(blob)
 
@@ -35,7 +37,7 @@ module.exports.blobReadStream = function(test, common) {
         })
 
         rs.pipe(concat(function(file) {
-          t.equal(file.length, blob.size, 'blob size is correct')
+          t.equal(file.length, 6, 'blob length is correct')
           common.teardown(test, store, blob, function(err) {
             t.error(err)
             t.end()
@@ -53,7 +55,7 @@ module.exports.blobReadError = function(test, common) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
     
-      var rs = store.createReadStream({name: 'test.js', hash: '8843d7f92416211de9ebb963ff4ce28125932878'})
+      var rs = store.createReadStream({name: 'test.js', key: '8843d7f92416211de9ebb963ff4ce28125932878'})
 
       rs.on('error', function(e) {
         t.ok(e, 'got a read stream err')
@@ -71,12 +73,16 @@ module.exports.blobExists = function(test, common) {
   test('check if a blob exists', function(t) {
     common.setup(test, function(err, store) {
       t.notOk(err, 'no setup err')
-      var blobMeta = {name: 'test.js', hash: '8843d7f92416211de9ebb963ff4ce28125932878'}
+      var blobMeta = {name: 'test.js', key: '8843d7f92416211de9ebb963ff4ce28125932878'}
       store.exists(blobMeta, function(err, exists) {
         t.error(err)
         t.notOk(exists, 'does not exist')
         
         var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
+          t.notOk(err, 'no blob write err')
+          t.ok(obj.key, 'blob has key')
+          t.ok(obj.name, 'blob has name')
+          
           // on this .exists call use the metadata from the writeStream
           store.exists(obj, function(err, exists) {
             t.error(err)
