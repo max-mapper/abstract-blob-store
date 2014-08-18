@@ -63,6 +63,8 @@ This method should return a writable stream, and call `cb` with `err, metadata` 
 
 `opts` should be an object with any blob metadata you would like to store, e.g. `name`
 
+the `metadata` passed to `cb` *must* have a `key` property that the user can pass to other methods to get the blob back again.
+
 You can choose how to store the blob. The recommended way is to hash the contents of the incoming stream and store the blob using that hash as the key (this is known as 'content-addressed storage'). If this is not an option you can choose some other way to store the data. When calling the callback you should return an object that ideally has all of the relevant metadata on it, as this object will be used to later read the blob from the blob store.
 
 In ths reference implementation the callback gets called with `{key: sha, size: contents.length, name: opts.name}`.
