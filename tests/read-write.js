@@ -8,7 +8,6 @@ module.exports.blobWriteStream = function(test, common) {
       var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
         t.error(err)
         t.ok(obj.key, 'blob has key')
-        t.ok(obj.name, 'blob has name')
         common.teardown(test, store, obj, function(err) {
           t.error(err)
           t.end()
@@ -27,7 +26,6 @@ module.exports.blobReadStream = function(test, common) {
       var ws = store.createWriteStream({name: 'test.js'}, function(err, blob) {
         t.notOk(err, 'no blob write err')
         t.ok(blob.key, 'blob has key')
-        t.ok(blob.name, 'blob has name')
         
         var rs = store.createReadStream(blob)
 
@@ -81,7 +79,6 @@ module.exports.blobExists = function(test, common) {
         var ws = store.createWriteStream({name: 'test.js'}, function(err, obj) {
           t.notOk(err, 'no blob write err')
           t.ok(obj.key, 'blob has key')
-          t.ok(obj.name, 'blob has name')
           
           // on this .exists call use the metadata from the writeStream
           store.exists(obj, function(err, exists) {
