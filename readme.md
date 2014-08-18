@@ -61,7 +61,7 @@ A valid blob store should implement the following APIs. There is a reference in-
 
 This method should return a writable stream, and call `cb` with `err, metadata` when it finishes writing the data to the underlying blob store.
 
-`opts` **must** be an object with at least `name` and `key` properties
+`opts` should be an object with any blob metadata you would like to store, e.g. `name`
 
 You can choose how to store the blob. The recommended way is to hash the contents of the incoming stream and store the blob using that hash as the key (this is known as 'content-addressed storage'). If this is not an option you can choose some other way to store the data. When calling the callback you should return an object that ideally has all of the relevant metadata on it, as this object will be used to later read the blob from the blob store.
 
@@ -71,8 +71,8 @@ In ths reference implementation the callback gets called with `{key: sha, size: 
 
 This method should return a readable stream that emits blob data from the underlying blob store or emits an error if the blob does not exist or if there was some other error during the read.
 
-`opts` *must* be an object with both `key` and `name` properties. The `key` is used to find and read the blob. It is recommended where possible to use the hash of the contents of the file as the `key` in order to avoid duplication or finding the wrong file.
+`opts` *must* be an object with a `key` property. The `key` is used to find and read the blob. It is recommended where possible to use the hash of the contents of the file as the `key` in order to avoid duplication or finding the wrong file.
 
 ### store.exists(opts, cb)
 
-This checks if a blob exists in the store. `opts` should be the same as it is in `createReadStream`. The `cb` should be called with `err, exists`, where `err` is an error if something went wrong during the exists check, and `exists` is a boolean.
+This checks if a blob exists in the store. `opts` *must* be an object with a `key` property (the same key that you got back from createReadStream). The `cb` should be called with `err, exists`, where `err` is an error if something went wrong during the exists check, and `exists` is a boolean.
