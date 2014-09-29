@@ -13,6 +13,7 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
   if (typeof opts === 'function') return this.createWriteStream(null, opts)
   if (typeof opts === 'string') opts = {key:opts}
   if (!opts) opts = {}
+  if (!cb) cb = noop
 
   var self = this
   return concat(done)
@@ -42,3 +43,11 @@ MemBlobs.prototype.exists = function(opts, cb) {
   if (typeof opts === 'string') opts = {key:opts}
   cb(null, !!this.data[opts.key])
 }
+
+MemBlobs.prototype.remove = function(opts, cb) {
+  if (!cb) cb = noop
+  delete this.data[opts.key]
+  cb()
+}
+
+function noop() {}
