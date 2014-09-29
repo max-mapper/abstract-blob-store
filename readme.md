@@ -64,7 +64,8 @@ A valid blob store should implement the following APIs. There is a reference in-
 
 This method should return a writable stream, and call `cb` with `err, metadata` when it finishes writing the data to the underlying blob store.
 
-`opts` should be an object with any blob metadata you would like to store, e.g. `name`
+If `opts` is a string it should be interpreted as a `key`.
+Otherwise `opts` should be an object with any blob metadata you would like to store, e.g. `name`
 
 the `metadata` passed to `cb` *must* have a `key` property that the user can pass to other methods to get the blob back again.
 
@@ -76,8 +77,12 @@ In ths reference implementation the callback gets called with `{key: sha, size: 
 
 This method should return a readable stream that emits blob data from the underlying blob store or emits an error if the blob does not exist or if there was some other error during the read.
 
-`opts` *must* be an object with a `key` property. The `key` is used to find and read the blob. It is recommended where possible to use the hash of the contents of the file as the `key` in order to avoid duplication or finding the wrong file.
+If `opts` is a string it should be interpreted as a `key`.
+Otherwise `opts` *must* be an object with a `key` property. The `key` is used to find and read the blob. It is recommended where possible to use the hash of the contents of the file as the `key` in order to avoid duplication or finding the wrong file.
 
 ### store.exists(opts, cb)
 
-This checks if a blob exists in the store. `opts` *must* be an object with a `key` property (the same key that you got back from createReadStream). The `cb` should be called with `err, exists`, where `err` is an error if something went wrong during the exists check, and `exists` is a boolean.
+This checks if a blob exists in the store.
+
+If `opts` is string it should be interpreted as a `key`.
+Otherwise `opts` *must* be an object with a `key` property (the same key that you got back from createReadStream). The `cb` should be called with `err, exists`, where `err` is an error if something went wrong during the exists check, and `exists` is a boolean.
