@@ -10,6 +10,10 @@ function MemBlobs() {
 }
 
 MemBlobs.prototype.createWriteStream = function(opts, cb) {
+  if (typeof opts === 'function') return this.createWriteStream(null, opts)
+  if (typeof opts === 'string') opts = {key:opts}
+  if (!opts) opts = {}
+
   var self = this
   return concat(done)
   
@@ -21,6 +25,8 @@ MemBlobs.prototype.createWriteStream = function(opts, cb) {
 }
 
 MemBlobs.prototype.createReadStream = function(opts) {
+  if (typeof opts === 'string') opts = {key:opts}
+
   var buff = this.data[opts.key]
   var stream
   if (!buff) {
@@ -33,5 +39,6 @@ MemBlobs.prototype.createReadStream = function(opts) {
 }
 
 MemBlobs.prototype.exists = function(opts, cb) {
+  if (typeof opts === 'string') opts = {key:opts}
   cb(null, !!this.data[opts.key])
 }
