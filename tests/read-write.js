@@ -31,7 +31,7 @@ module.exports.blobReadStream = function(test, common) {
 
         rs.on('error', function(e) {
           t.false(e, 'no read stream err')
-          done()
+          t.end()
         })
 
         rs.pipe(concat(function(file) {
