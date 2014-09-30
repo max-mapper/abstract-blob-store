@@ -27,7 +27,7 @@ module.exports.blobReadStream = function(test, common) {
         t.notOk(err, 'no blob write err')
         t.ok(blob.key, 'blob has key')
 
-        var rs = store.createReadStream('hello-world.txt')
+        var rs = store.createReadStream(blob.key)
 
         rs.on('error', function(e) {
           t.false(e, 'no read stream err')
@@ -80,7 +80,7 @@ module.exports.blobExists = function(test, common) {
           t.ok(obj.key, 'blob has key')
 
           // on this .exists call use the metadata from the writeStream
-          store.exists('hello-world.txt', function(err, exists) {
+          store.exists(obj.key, function(err, exists) {
             t.error(err)
             t.ok(exists, 'exists')
             common.teardown(test, store, obj, function(err) {
