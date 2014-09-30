@@ -23,6 +23,12 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 
 send a PR adding yours if you write a new one
 
+## badge
+
+Include this badge in your readme if you make a new module that uses the `abstract-blob-store` API
+
+[![blob-store-compatible](badge.png)](https://github.com/maxogden/abstract-blob-store)
+
 ## how to use
 
 To use the test suite from this module you can `require('abstract-blob-store/tests')`
