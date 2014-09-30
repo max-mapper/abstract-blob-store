@@ -84,5 +84,12 @@ Otherwise `opts` *must* be an object with a `key` property. The `key` is used to
 
 This checks if a blob exists in the store.
 
-If `opts` is string it should be interpreted as a `key`.
+If `opts` is a string it should be interpreted as a `key`.
 Otherwise `opts` *must* be an object with a `key` property (the same key that you got back from createReadStream). The `cb` should be called with `err, exists`, where `err` is an error if something went wrong during the exists check, and `exists` is a boolean.
+
+### store.remove(opts, cb)
+
+This method should remove a blob from the store.
+
+If `opts` is a string is should be interpreted as a `key`.
+Otherwise `opts` *must* be an object with a `key` property. If the `cb` is called without an error subsequent calls to `.exists` with the same opts should return `false`.
