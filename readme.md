@@ -21,6 +21,7 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [torrent-blob-store](https://github.com/mafintosh/torrent-blob-store)
 - [s3-blob-store](https://github.com/jb55/s3-blob-store)
 - [idb-blob-store](https://github.com/substack/idb-blob-store)
+- [idb-content-addressable-blob-store](https://github.com/substack/idb-content-addressable-blob-store)
 
 send a PR adding yours if you write a new one
 
