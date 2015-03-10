@@ -18,6 +18,23 @@ module.exports.blobWriteStream = function(test, common) {
   })
 }
 
+module.exports.blobWriteStreamSubFolder = function(test, common) {
+  test('piping a blob into a blob write stream in nonexisting subfolder', function(t) {
+    common.setup(test, function(err, store) {
+      t.notOk(err, 'no setup err')
+      var ws = store.createWriteStream({name: 'folder/test.js'}, function(err, obj) {
+        t.error(err)
+        t.ok(obj.key, 'blob has key')
+        common.teardown(test, store, obj, function(err) {
+          t.error(err)
+          t.end()
+        })
+      })
+      from([new Buffer('foo'), new Buffer('bar')]).pipe(ws)
+    })
+  })
+}
+
 module.exports.blobReadStream = function(test, common) {
   test('reading a blob as a stream', function(t) {
     common.setup(test, function(err, store) {
@@ -100,6 +117,7 @@ module.exports.blobExists = function(test, common) {
 
 module.exports.all = function (test, common) {
   module.exports.blobWriteStream(test, common)
+  module.exports.blobWriteStreamSubFolder(test, common)
   module.exports.blobReadStream(test, common)
   module.exports.blobReadError(test, common)
   module.exports.blobExists(test, common)
