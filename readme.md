@@ -23,6 +23,7 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [idb-blob-store](https://github.com/substack/idb-blob-store)
 - [idb-content-addressable-blob-store](https://github.com/substack/idb-content-addressable-blob-store)
 - [manta-blob-store](https://github.com/klokoy/manta-blob-store)
+- [meta-blob-store](https://github.com/bengl/meta-blob-store)
 
 send a PR adding yours if you write a new one
 
