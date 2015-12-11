@@ -16,14 +16,15 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [fs-blob-store](https://github.com/mafintosh/fs-blob-store)
 - [google-cloud-storage](https://github.com/maxogden/google-cloud-storage)
 - [google-drive-blobs](https://github.com/maxogden/google-drive-blobs)
-- [postgres-blob-store](https://github.com/finnp/postgres-blob-store)
-- [local-blob-store](https://github.com/maxogden/local-blob-store) (deprecated)
-- [torrent-blob-store](https://github.com/mafintosh/torrent-blob-store)
-- [s3-blob-store](https://github.com/jb55/s3-blob-store)
 - [idb-blob-store](https://github.com/substack/idb-blob-store)
 - [idb-content-addressable-blob-store](https://github.com/substack/idb-content-addressable-blob-store)
+- [ipfs-blob-store](https://github.com/ipfs/ipfs-blob-store)
+- [local-blob-store](https://github.com/maxogden/local-blob-store) (deprecated)
 - [manta-blob-store](https://github.com/klokoy/manta-blob-store)
 - [meta-blob-store](https://github.com/bengl/meta-blob-store)
+- [postgres-blob-store](https://github.com/finnp/postgres-blob-store)
+- [s3-blob-store](https://github.com/jb55/s3-blob-store)
+- [torrent-blob-store](https://github.com/mafintosh/torrent-blob-store)
 
 send a PR adding yours if you write a new one
 
