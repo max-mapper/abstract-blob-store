@@ -20,6 +20,8 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [idb-content-addressable-blob-store](https://github.com/substack/idb-content-addressable-blob-store)
 - [ipfs-blob-store](https://github.com/ipfs/ipfs-blob-store)
 - [local-blob-store](https://github.com/maxogden/local-blob-store) (deprecated)
+- [level-blob-store](https://github.com/diasdavid/level-blob-store)
+- [level-blobs](https://github.com/mafintosh/level-blobs) (pre abstract-blob-store, but has the same interface)
 - [manta-blob-store](https://github.com/klokoy/manta-blob-store)
 - [meta-blob-store](https://github.com/bengl/meta-blob-store)
 - [postgres-blob-store](https://github.com/finnp/postgres-blob-store)
