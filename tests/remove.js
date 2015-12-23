@@ -12,7 +12,10 @@ module.exports.remove = function(test, common) {
           store.exists({key:'test.js'}, function(err, exists) {
             t.error(err)
             t.notOk(exists, 'blob is removed')
-            t.end()
+            common.teardown(test, store, undefined, function(err) {
+              t.error(err)
+              t.end()
+            })
           })
         })
       })
