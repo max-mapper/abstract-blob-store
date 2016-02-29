@@ -107,3 +107,9 @@ This method should remove a blob from the store.
 
 If `opts` is a string is should be interpreted as a `key`.
 Otherwise `opts` *must* be an object with a `key` property. If the `cb` is called without an error subsequent calls to `.exists` with the same opts should return `false`.
+
+## Background
+
+An `abstract-blob-store` is a general system for storing and retrieving binary files, utilizing different storage and addressing schemes. A blob is the set of binary data that makes up an entire binary file.  
+
+Blobs are sometimes cut up into chunks so that they can be processed in various ways (see [rabin](https://github.com/maxogden/rabin)).  If you are dealing with chunks of individual blobs, you may be looking for [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store).
