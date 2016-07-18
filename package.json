@@ -11,7 +11,7 @@
     "test": "node tests/run.js"
   },
   "author": "max ogden",
-  "license": "BSD",
+  "license": "BSD-2-Clause",
   "dependencies": {
     "concat-stream": "^1.4.6",
     "from2-array": "0.0.3"
