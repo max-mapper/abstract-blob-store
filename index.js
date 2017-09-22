@@ -32,7 +32,9 @@ MemBlobs.prototype.createReadStream = function(opts) {
   var stream
   if (!buff) {
     stream = from([])
-    stream.destroy(new Error('Blob not found'))
+    var error = new Error('Blob not found')
+    error.notFound = true
+    stream.destroy(error)
   } else {
     stream = from([buff])
   }
