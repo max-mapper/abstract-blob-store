@@ -7,6 +7,10 @@
     "hyperdata",
     "dat"
   ],
+  "files": [
+    "index.js",
+    "tests/*"
+  ],
   "scripts": {
     "test": "node tests/run.js"
   },
