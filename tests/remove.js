@@ -7,9 +7,9 @@ module.exports.remove = function(test, common) {
       t.notOk(err, 'no setup err')
       var ws = store.createWriteStream({key: 'test.js'}, function(err, obj) {
         t.error(err)
-        store.remove({key:'test.js'}, function(err) {
+        store.remove({key: obj.key}, function(err) {
           t.error(err)
-          store.exists({key:'test.js'}, function(err, exists) {
+          store.exists({key: obj.key}, function(err, exists) {
             t.error(err)
             t.notOk(exists, 'blob is removed')
             t.end()
