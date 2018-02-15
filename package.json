@@ -10,6 +10,7 @@
   ],
   "files": [
     "index.js",
+    "index.d.ts",
     "tests/*"
   ],
   "scripts": {
