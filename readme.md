@@ -32,6 +32,8 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 
 send a PR adding yours if you write a new one
 
+Also, add **abstract-blob-store** to your project topics. This helps people to see [compatible projects](https://github.com/topics/abstract-blob-store) in one list 
+
 ## badge
 
 Include this badge in your readme if you make a new module that uses the `abstract-blob-store` API
