@@ -12,12 +12,14 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 
 ## some modules that use this
 
+- [azure-blob-store](https://github.com/svnlto/azure-blob-store)
 - [content-addressable-blob-store](https://github.com/mafintosh/content-addressable-blob-store)
 - [fs-blob-store](https://github.com/mafintosh/fs-blob-store)
 - [google-cloud-storage](https://github.com/maxogden/google-cloud-storage)
 - [google-drive-blobs](https://github.com/maxogden/google-drive-blobs)
 - [idb-blob-store](https://github.com/substack/idb-blob-store)
 - [idb-content-addressable-blob-store](https://github.com/substack/idb-content-addressable-blob-store)
+- [indexed-tarball-blob-store](https://github.com/digidem/indexed-tarball-blob-store)
 - [ipfs-blob-store](https://github.com/ipfs/ipfs-blob-store)
 - [local-blob-store](https://github.com/maxogden/local-blob-store) (deprecated)
 - [local-storage-blob-store](https://github.com/xicombd/local-storage-blob-store)
@@ -28,7 +30,6 @@ Publishing a test suite as a module lets multiple modules all ensure compatibili
 - [postgres-blob-store](https://github.com/finnp/postgres-blob-store)
 - [s3-blob-store](https://github.com/jb55/s3-blob-store)
 - [torrent-blob-store](https://github.com/mafintosh/torrent-blob-store)
-- [azure-blob-store](https://github.com/svnlto/azure-blob-store)
 
 send a PR adding yours if you write a new one
 
